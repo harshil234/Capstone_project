@@ -1,0 +1,365 @@
+<!-- AI Ad Copy Generator Modal -->
+<div class="modal fade" id="copyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-pen-fancy me-2"></i>AI Ad Copy Generator
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="copyForm">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="productName" class="form-label">
+                                    <i class="fas fa-box me-2"></i>Product/Service Name
+                                </label>
+                                <input type="text" class="form-control" id="productName" placeholder="e.g., Fitness App" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="targetAudience" class="form-label">
+                                    <i class="fas fa-users me-2"></i>Target Audience
+                                </label>
+                                <input type="text" class="form-control" id="targetAudience" placeholder="e.g., Young professionals" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="adObjective" class="form-label">
+                                    <i class="fas fa-bullseye me-2"></i>Ad Objective
+                                </label>
+                                <select class="form-select" id="adObjective" required>
+                                    <option value="">Select Objective</option>
+                                    <option value="awareness">Brand Awareness</option>
+                                    <option value="traffic">Drive Traffic</option>
+                                    <option value="conversions">Generate Conversions</option>
+                                    <option value="engagement">Increase Engagement</option>
+                                    <option value="leads">Generate Leads</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="tone" class="form-label">
+                                    <i class="fas fa-volume-up me-2"></i>Tone of Voice
+                                </label>
+                                <select class="form-select" id="tone" required>
+                                    <option value="">Select Tone</option>
+                                    <option value="professional">Professional</option>
+                                    <option value="casual">Casual</option>
+                                    <option value="humorous">Humorous</option>
+                                    <option value="urgent">Urgent</option>
+                                    <option value="inspirational">Inspirational</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="keyBenefits" class="form-label">
+                                    <i class="fas fa-star me-2"></i>Key Benefits
+                                </label>
+                                <textarea class="form-control" id="keyBenefits" rows="3" placeholder="e.g., Save time, improve health, easy to use"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="callToAction" class="form-label">
+                                    <i class="fas fa-hand-pointer me-2"></i>Call to Action
+                                </label>
+                                <input type="text" class="form-control" id="callToAction" placeholder="e.g., Download Now, Learn More">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="form-check mt-4">
+                                    <input class="form-check-input" type="checkbox" id="generateImage" checked>
+                                    <label class="form-check-label" for="generateImage">
+                                        <i class="fas fa-image me-2"></i>Generate AI Image
+                                    </label>
+                                </div>
+                                <small class="text-muted">May take 30-60 seconds</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-secondary btn-lg">
+                            <i class="fas fa-magic me-2"></i>Generate Ad Copy
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="copyResults" class="mt-5" style="display: none;">
+                    <h5 class="mb-4 text-center">
+                        <i class="fas fa-pen-fancy me-2"></i>Generated Ad Copy
+                    </h5>
+                    
+                    <div class="row g-4">
+                        <!-- Primary Copy -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">
+                                        <i class="fas fa-star me-2"></i>Primary Ad Copy
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Headline:</label>
+                                        <div id="primaryHeadline" class="p-3 bg-light rounded"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Body Text:</label>
+                                        <div id="primaryBody" class="p-3 bg-light rounded"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Call to Action:</label>
+                                        <div id="primaryCTA" class="p-3 bg-light rounded"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Variations -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">
+                                        <i class="fas fa-layer-group me-2"></i>Copy Variations
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div id="copyVariations"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Generated Image -->
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6 class="mb-0">
+                                        <i class="fas fa-image me-2"></i>Generated Image
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div id="generatedImage"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Performance Tips -->
+                        <div class="col-md-12">
+                            <div class="card bg-gradient-primary text-white">
+                                <div class="card-header">
+                                    <h6 class="mb-0">
+                                        <i class="fas fa-lightbulb me-2"></i>Performance Tips
+                                    </h6>
+                                </div>
+                                <div class="card-body">
+                                    <div id="performanceTips"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="text-center mt-4">
+                        <button class="btn btn-outline-primary me-3" onclick="copyToClipboard()">
+                            <i class="fas fa-copy me-2"></i>Copy to Clipboard
+                        </button>
+                        <button class="btn btn-outline-secondary" onclick="generateNewCopy()">
+                            <i class="fas fa-refresh me-2"></i>Generate New Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Simple copy generation handler that uses the main template's functions
+document.getElementById('copyForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = {
+        productName: document.getElementById('productName').value.trim(),
+        targetAudience: document.getElementById('targetAudience').value.trim(),
+        adObjective: document.getElementById('adObjective').value.trim(),
+        tone: document.getElementById('tone').value.trim(),
+        keyBenefits: document.getElementById('keyBenefits').value.trim(),
+        callToAction: document.getElementById('callToAction').value.trim(),
+        generateImage: document.getElementById('generateImage').checked
+    };
+
+    // Basic validation
+    if (!formData.productName || !formData.targetAudience || !formData.keyBenefits) {
+        alert('Please fill in all required fields (Product Name, Target Audience, Key Benefits)');
+        return;
+    }
+
+    try {
+        // Show loading message
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Generating...';
+        submitBtn.disabled = true;
+
+        // Make API call
+        const response = await fetch('/api/generate-copy', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        
+        // Display results using the main template's function
+        if (typeof displayCopyResults === 'function') {
+            displayCopyResults(data);
+        } else {
+            // Fallback display
+            displayResultsDirectly(data);
+        }
+
+        // Show success message
+        alert('Ad copy generated successfully!');
+
+    } catch (error) {
+        console.error('Copy generation error:', error);
+        alert(`Copy generation failed: ${error.message}`);
+    } finally {
+        // Reset button
+        const submitBtn = this.querySelector('button[type="submit"]');
+        submitBtn.innerHTML = '<i class="fas fa-magic me-2"></i>Generate Ad Copy';
+        submitBtn.disabled = false;
+    }
+});
+
+// Fallback display function if main template function is not available
+function displayResultsDirectly(data) {
+    if (!data || !data.generated_copy) {
+        alert('Invalid response from server');
+        return;
+    }
+
+    const copy = data.generated_copy;
+    
+    // Display primary copy
+    const primaryHeadline = document.getElementById('primaryHeadline');
+    const primaryBody = document.getElementById('primaryBody');
+    const primaryCTA = document.getElementById('primaryCTA');
+    
+    if (primaryHeadline) primaryHeadline.textContent = copy.primary_headline || 'N/A';
+    if (primaryBody) primaryBody.textContent = copy.primary_body || 'N/A';
+    if (primaryCTA) primaryCTA.textContent = copy.primary_cta || 'N/A';
+
+    // Display variations
+    const copyVariations = document.getElementById('copyVariations');
+    if (copyVariations && copy.variations) {
+        const variationsHtml = copy.variations.map((variation, index) => `
+            <div class="mb-4 p-3 border rounded">
+                <h6 class="fw-bold mb-2">Variation ${index + 1}</h6>
+                <div class="mb-2"><strong>Headline:</strong> ${variation.headline || 'N/A'}</div>
+                <div class="mb-2"><strong>Body:</strong> ${variation.body || 'N/A'}</div>
+                <div class="mb-2"><strong>CTA:</strong> ${variation.cta || 'N/A'}</div>
+            </div>
+        `).join('');
+        copyVariations.innerHTML = variationsHtml;
+    }
+
+    // Display image
+    const imageContainer = document.getElementById('generatedImage');
+    if (imageContainer) {
+        if (copy.image_path) {
+            imageContainer.innerHTML = `
+                <div class="text-center">
+                    <img src="${copy.image_path}" class="img-fluid rounded" alt="Generated Ad Image" style="max-width: 100%; height: auto;">
+                    <div class="mt-2">
+                        <small class="text-muted">
+                            <strong>Image Prompt:</strong> ${copy.image_prompt || 'AI-generated based on your inputs'}
+                        </small>
+                    </div>
+                </div>
+            `;
+        } else {
+            imageContainer.innerHTML = `
+                <div class="alert alert-warning">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Image generation is not available. The ad copy has been generated successfully.
+                </div>
+            `;
+        }
+    }
+
+    // Display performance tips
+    const performanceTips = document.getElementById('performanceTips');
+    if (performanceTips) {
+        const tips = [
+            "Use high-quality visuals that match your brand",
+            "Test different audiences to find your best performers",
+            "A/B test headlines and CTAs regularly",
+            "Monitor performance and adjust budgets accordingly",
+            "Use consistent branding across channels"
+        ];
+        
+        performanceTips.innerHTML = tips.map(tip => 
+            `<div class="mb-2"><i class="fas fa-check-circle me-2"></i>${tip}</div>`
+        ).join('');
+    }
+
+    // Show results
+    const copyResults = document.getElementById('copyResults');
+    if (copyResults) {
+        copyResults.style.display = 'block';
+    }
+}
+
+// Simple clipboard function
+function copyToClipboard() {
+    const primaryHeadline = document.getElementById('primaryHeadline');
+    const primaryBody = document.getElementById('primaryBody');
+    const primaryCTA = document.getElementById('primaryCTA');
+    
+    if (!primaryHeadline || !primaryBody || !primaryCTA) {
+        alert('No ad copy to copy. Please generate copy first.');
+        return;
+    }
+
+    const copyText = `
+Headline: ${primaryHeadline.textContent || 'N/A'}
+
+Body: ${primaryBody.textContent || 'N/A'}
+
+CTA: ${primaryCTA.textContent || 'N/A'}
+    `.trim();
+
+    try {
+        navigator.clipboard.writeText(copyText);
+        alert('Ad copy copied to clipboard!');
+    } catch (error) {
+        alert('Failed to copy to clipboard');
+    }
+}
+
+// Simple new copy function
+function generateNewCopy() {
+    const copyResults = document.getElementById('copyResults');
+    if (copyResults) {
+        copyResults.style.display = 'none';
+    }
+    
+    document.getElementById('copyForm').reset();
+}
+</script> 

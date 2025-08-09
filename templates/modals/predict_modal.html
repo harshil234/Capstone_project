@@ -1,0 +1,233 @@
+<!-- Predict Ad Metrics Modal -->
+<div class="modal fade" id="predictModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-chart-line me-2"></i>Predict Ad Performance
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="predictForm">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="adSpend" class="form-label">
+                                    <i class="fas fa-dollar-sign me-2"></i>Ad Spend ($)
+                                </label>
+                                <input type="number" class="form-control" id="adSpend" name="adSpend" placeholder="1000" required min="1">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="targetAge" class="form-label">
+                                    <i class="fas fa-users me-2"></i>Target Age Group
+                                </label>
+                                <select class="form-select" id="targetAge" name="targetAge" required>
+                                    <option value="">Select Age Group</option>
+                                    <option value="18-24">18-24</option>
+                                    <option value="25-34">25-34</option>
+                                    <option value="35-44">35-44</option>
+                                    <option value="45-54">45-54</option>
+                                    <option value="55+">55+</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="platform" class="form-label">
+                                    <i class="fas fa-globe me-2"></i>Platform
+                                </label>
+                                <select class="form-select" id="platform" name="platform" required>
+                                    <option value="">Select Platform</option>
+                                    <option value="Facebook">Facebook</option>
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="Google">Google</option>
+                                    <option value="YouTube">YouTube</option>
+                                    <option value="TikTok">TikTok</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="adFormat" class="form-label">
+                                    <i class="fas fa-image me-2"></i>Ad Format
+                                </label>
+                                <select class="form-select" id="adFormat" name="adFormat" required>
+                                    <option value="">Select Format</option>
+                                    <option value="Image">Image</option>
+                                    <option value="Video">Video</option>
+                                    <option value="Carousel">Carousel</option>
+                                    <option value="Story">Story</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="industry" class="form-label">
+                                    <i class="fas fa-industry me-2"></i>Industry
+                                </label>
+                                <select class="form-select" id="industry" name="industry" required>
+                                    <option value="">Select Industry</option>
+                                    <option value="E-commerce">E-commerce</option>
+                                    <option value="Technology">Technology</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Education">Education</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="campaignDuration" class="form-label">
+                                    <i class="fas fa-calendar me-2"></i>Campaign Duration (days)
+                                </label>
+                                <input type="number" class="form-control" id="campaignDuration" name="campaignDuration" placeholder="30" required min="1" max="365">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-chart-line me-2"></i>Predict Performance
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="predictResults" class="mt-5 fade-in" style="display: none;">
+                    <h5 class="mb-4 text-center">
+                        <i class="fas fa-chart-line me-2"></i>Prediction Results
+                    </h5>
+                    
+                    <!-- Enhanced Metrics Grid -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-3 col-6">
+                            <div class="metric-card text-center p-4">
+                                <i class="fas fa-mouse-pointer mb-3" style="font-size: 2rem; color: var(--primary-500);"></i>
+                                <h4 class="metric-value" id="predictedCTR">-</h4>
+                                <p class="metric-label">Expected CTR</p>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar" id="ctrProgress" role="progressbar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="metric-card text-center p-4">
+                                <i class="fas fa-eye mb-3" style="font-size: 2rem; color: var(--success-500);"></i>
+                                <h4 class="metric-value" id="predictedImpressions">-</h4>
+                                <p class="metric-label">Impressions</p>
+                                <small class="text-muted">Estimated reach</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="metric-card text-center p-4">
+                                <i class="fas fa-users mb-3" style="font-size: 2rem; color: var(--warning-500);"></i>
+                                <h4 class="metric-value" id="predictedReach">-</h4>
+                                <p class="metric-label">Estimated Reach</p>
+                                <small class="text-muted">Unique viewers</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="metric-card text-center p-4">
+                                <i class="fas fa-chart-bar mb-3" style="font-size: 2rem; color: var(--danger-500);"></i>
+                                <h4 class="metric-value" id="predictedCPM">-</h4>
+                                <p class="metric-label">CPM</p>
+                                <small class="text-muted">Cost per 1000</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Chart -->
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-chart-pie me-2"></i>Performance Breakdown
+                                    </h6>
+                                    <div style="position: relative; height: 300px;">
+                                        <canvas id="performanceChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-gradient-primary text-white">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-lightbulb me-2"></i>Key Insights
+                                    </h6>
+                                    <div id="predictInsights"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Dashboard -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="fas fa-chart-line me-2"></i>Comprehensive Analytics Dashboard
+                            </h6>
+                            <div id="analyticsDashboard">
+                                <!-- Charts will be dynamically generated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="fas fa-rocket me-2"></i>Optimization Recommendations
+                            </h6>
+                            <ul class="list-unstyled" id="predictRecommendations">
+                                <!-- Will be populated by JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.metric-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
+}
+
+.metric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0;
+}
+
+.metric-label {
+    color: var(--gray-600);
+    font-weight: 500;
+    margin: 0;
+}
+
+.progress {
+    background: var(--gray-200);
+    border-radius: var(--radius-full);
+}
+
+.progress-bar {
+    background: var(--gradient-primary);
+    border-radius: var(--radius-full);
+}
+</style>
+
+<!-- Chart functionality is handled by the main index.html JavaScript --> 

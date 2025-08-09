@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AdVision - AI-Powered Ad Analytics{% endblock %}</title>
+    
+    <!-- External CSS Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS Variables and Styles -->
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            /* Primary Colors */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            
+            /* Secondary Colors */
+            --secondary: #6b7280;
+            --secondary-dark: #4b5563;
+            --secondary-light: #9ca3af;
+            
+            /* Success Colors */
+            --success: #10b981;
+            --success-dark: #059669;
+            --success-light: #34d399;
+            
+            /* Warning Colors */
+            --warning: #f59e0b;
+            --warning-dark: #d97706;
+            --warning-light: #fbbf24;
+            
+            /* Danger Colors */
+            --danger: #ef4444;
+            --danger-dark: #dc2626;
+            --danger-light: #f87171;
+            
+            /* Gray Scale */
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            
+            /* Typography */
+            --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-family-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            
+            /* Spacing */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.25rem;
+            --radius-md: 0.375rem;
+            --radius-lg: 0.5rem;
+            --radius-xl: 0.75rem;
+            --radius-2xl: 1rem;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            /* Transitions */
+            --transition-fast: 150ms ease-in-out;
+            --transition-normal: 300ms ease-in-out;
+            --transition-slow: 500ms ease-in-out;
+        }
+
+        /* ===== GLOBAL STYLES ===== */
+        body {
+            font-family: var(--font-family-sans);
+            line-height: 1.6;
+            color: var(--gray-800);
+            background-color: var(--gray-50);
+        }
+
+        /* ===== NAVIGATION STYLES ===== */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            box-shadow: var(--shadow-md);
+            padding: var(--spacing-md) 0;
+        }
+        
+        .navbar-brand img {
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+            text-decoration: none;
+        }
+
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navbar-logo::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 24px;
+            height: 16px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: var(--radius-sm);
+            clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+        }
+
+        .navbar-logo::after {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 16px;
+            height: 8px;
+            background: #f59e0b;
+            border-radius: var(--radius-sm);
+            clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500;
+            padding: var(--spacing-sm) var(--spacing-md) !important;
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: white !important;
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .navbar-nav .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white !important;
+        }
+
+        /* ===== BUTTON STYLES ===== */
+        .btn {
+            border-radius: var(--radius-lg);
+            font-weight: 500;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            transition: var(--transition-fast);
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition-normal);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success) 0%, var(--success-dark) 100%);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, var(--warning) 0%, var(--warning-dark) 100%);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger) 0%, var(--danger-dark) 100%);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== CARD STYLES ===== */
+        .card {
+            border: none;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-normal);
+            background: white;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+            border-bottom: 1px solid var(--gray-200);
+            font-weight: 600;
+        }
+
+        /* ===== FORM STYLES ===== */
+        .form-control, .form-select {
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--gray-200);
+            padding: var(--spacing-md);
+            transition: var(--transition-fast);
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.25);
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* ===== MODAL STYLES ===== */
+        .modal-content {
+            border-radius: var(--radius-xl);
+            border: none;
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .modal-title {
+            font-weight: 700;
+        }
+
+        /* ===== PROGRESS BAR STYLES ===== */
+        .progress {
+            height: 8px;
+            border-radius: var(--radius-full);
+            background-color: var(--gray-200);
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: var(--radius-full);
+            transition: var(--transition-normal);
+        }
+
+        /* ===== ALERT STYLES ===== */
+        .alert {
+            border-radius: var(--radius-lg);
+            border: none;
+            padding: var(--spacing-md);
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: var(--success-dark);
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: var(--warning-dark);
+        }
+
+        .alert-danger {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            color: var(--danger-dark);
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #1e40af;
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+
+        .bg-gradient-success {
+            background: linear-gradient(135deg, var(--success) 0%, var(--success-dark) 100%);
+        }
+
+        .bg-gradient-warning {
+            background: linear-gradient(135deg, var(--warning) 0%, var(--warning-dark) 100%);
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+            
+            .navbar-logo {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .btn {
+                padding: var(--spacing-sm) var(--spacing-md);
+            }
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ===== FOCUS STATES ===== */
+        .btn:focus,
+        .form-control:focus,
+        .form-select:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== NAVIGATION BAR ===== -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- Logo and Brand -->
+            <a class="navbar-brand" href="/">
+                <img src="/static/ad_image.png" alt="AdVision Logo" height="40" class="me-2" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+                <i class="fas fa-chart-line me-2" style="display: none; font-size: 1.5rem;"></i>
+                <span class="fw-bold">AdVision</span>
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                            <i class="fas fa-home me-2"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/chatbot">
+                            <i class="fas fa-comments me-2"></i>Chatbot
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/thumbnail-analyzer">
+                            <i class="fas fa-image me-2"></i>Analyzer
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/analytics">
+                            <i class="fas fa-chart-line me-2"></i>Analytics
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- ===== MAIN CONTENT AREA ===== -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <h6 class="mb-3">
+                        <i class="fas fa-chart-line me-2"></i>AdVision
+                    </h6>
+                    <p class="mb-0 text-muted">
+                        AI-Powered Ad Analytics Platform
+                    </p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0 text-muted">
+                        © 2024 AdVision. All rights reserved.
+                    </p>
+                </div>
+            </div>
+    </div>
+    </footer>
+
+    <!-- ===== EXTERNAL JAVASCRIPT LIBRARIES ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    
+    <!-- ===== CUSTOM JAVASCRIPT ===== -->
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

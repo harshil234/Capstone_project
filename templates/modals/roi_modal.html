@@ -1,0 +1,186 @@
+<!-- ROI Calculator Modal -->
+<div class="modal fade" id="roiModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-calculator me-2"></i>ROI Calculator
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="roiForm">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="adSpendROI" class="form-label">
+                                    <i class="fas fa-dollar-sign me-2"></i>Total Ad Spend ($)
+                                </label>
+                                <input type="number" class="form-control" id="adSpendROI" placeholder="1000" required min="1">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="cpc" class="form-label">
+                                    <i class="fas fa-mouse-pointer me-2"></i>Cost Per Click ($)
+                                </label>
+                                <input type="number" class="form-control" id="cpc" placeholder="2.50" step="0.01" required min="0.01">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="conversionRate" class="form-label">
+                                    <i class="fas fa-percentage me-2"></i>Conversion Rate (%)
+                                </label>
+                                <input type="number" class="form-control" id="conversionRate" placeholder="3.5" step="0.1" required min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="productPrice" class="form-label">
+                                    <i class="fas fa-tag me-2"></i>Average Product Price ($)
+                                </label>
+                                <input type="number" class="form-control" id="productPrice" placeholder="50" required min="0.01">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="profitMargin" class="form-label">
+                                    <i class="fas fa-chart-line me-2"></i>Profit Margin (%)
+                                </label>
+                                <input type="number" class="form-control" id="profitMargin" placeholder="30" required min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="repeatPurchases" class="form-label">
+                                    <i class="fas fa-redo me-2"></i>Repeat Purchase Rate (%)
+                                </label>
+                                <input type="number" class="form-control" id="repeatPurchases" placeholder="20" step="0.1" min="0" max="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="fas fa-calculator me-2"></i>Calculate ROI
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="roiResults" class="mt-5 fade-in" style="display: none;">
+                    <h5 class="mb-4 text-center">
+                        <i class="fas fa-chart-line me-2"></i>ROI Analysis Results
+                    </h5>
+                    
+                    <!-- Enhanced ROI Metrics Grid -->
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-3 col-6">
+                            <div class="metric-card text-center p-4">
+                                <i class="fas fa-mouse-pointer mb-3" style="font-size: 2rem; color: var(--primary-500);"></i>
+                                <h4 class="metric-value" id="totalClicks">-</h4>
+                                <p class="metric-label">Total Clicks</p>
+                                <small class="text-muted">From ad spend</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="metric-card text-center p-4">
+                                <i class="fas fa-shopping-cart mb-3" style="font-size: 2rem; color: var(--success-500);"></i>
+                                <h4 class="metric-value" id="totalConversions">-</h4>
+                                <p class="metric-label">Conversions</p>
+                                <small class="text-muted">Based on rate</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="metric-card text-center p-4">
+                                <i class="fas fa-dollar-sign mb-3" style="font-size: 2rem; color: var(--warning-500);"></i>
+                                <h4 class="metric-value" id="totalRevenue">-</h4>
+                                <p class="metric-label">Revenue</p>
+                                <small class="text-muted">Total sales</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <div class="metric-card text-center p-4">
+                                <i class="fas fa-chart-line mb-3" style="font-size: 2rem; color: var(--danger-500);"></i>
+                                <h4 class="metric-value" id="finalROI">-</h4>
+                                <p class="metric-label">ROI</p>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar" id="roiProgress" role="progressbar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Breakdown Chart -->
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-chart-pie me-2"></i>Financial Breakdown
+                                    </h6>
+                                    <div style="position: relative; height: 300px;">
+                                        <canvas id="roiChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-gradient-success text-white">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-lightbulb me-2"></i>ROI Assessment
+                                    </h6>
+                                    <div id="roiAdvice"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Analysis -->
+                    <div class="row g-4 mt-4">
+                        <div class="col-md-6">
+                            <div class="card bg-gradient-primary text-white">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title">Profit Margin</h6>
+                                    <div class="performance-score" id="profitMarginDisplay">-</div>
+                                    <small>Based on product cost</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-gradient-secondary text-white">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title">Net Profit</h6>
+                                    <div class="performance-score" id="netProfit">-</div>
+                                    <small>After ad spend</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="fas fa-rocket me-2"></i>Strategic Recommendations
+                            </h6>
+                            <ul class="list-unstyled" id="roiRecommendations">
+                                <!-- Will be populated by JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.performance-score {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 10px 0;
+}
+</style>
+
+<!-- Chart functionality is handled by the main index.html JavaScript --> 

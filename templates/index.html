@@ -1,0 +1,1777 @@
+{% extends "base.html" %}
+
+{% block title %}AdVision - AI-Powered Ad Analytics{% endblock %}
+
+{% block content %}
+<!-- ===== HERO SECTION ===== -->
+<section class="bg-white py-5">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <!-- Hero Content -->
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold text-dark mb-4">
+                    AI-Powered Ad Analytics
+                </h1>
+                <p class="lead text-muted mb-4">
+                    Optimize your advertising campaigns with advanced AI predictions, 
+                    ROI calculations, and intelligent copy generation.
+                </p>
+                <div class="d-flex gap-3">
+                    <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#predictModal">
+                        <i class="fas fa-chart-line me-2"></i>Predict Performance
+                    </button>
+                    <button class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#roiModal">
+                        <i class="fas fa-calculator me-2"></i>Calculate ROI
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Hero Visual -->
+            <div class="col-lg-6 text-center">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <i class="fas fa-chart-bar text-primary" style="font-size: 4rem;"></i>
+                        <h3 class="mt-3">Smart Analytics</h3>
+                        <p class="text-muted">Get insights that drive results</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FEATURES SECTION ===== -->
+<section class="bg-light py-5">
+    <div class="container-fluid">
+        <!-- Section Header -->
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="fw-bold text-dark">Our Features</h2>
+                <p class="text-muted">Everything you need to optimize your ads</p>
+            </div>
+        </div>
+        
+        <!-- Feature Cards -->
+        <div class="row g-4">
+            <!-- Predict Performance Feature -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-chart-line fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">Predict Performance</h5>
+                        <p class="card-text text-muted">
+                            Get accurate predictions for CTR, impressions, and reach based on your campaign parameters.
+                        </p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#predictModal">
+                            Try Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROI Calculator Feature -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-calculator fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">ROI Calculator</h5>
+                        <p class="card-text text-muted">
+                            Calculate your return on investment and understand the financial impact of your campaigns.
+                        </p>
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#roiModal">
+                            Calculate
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Copy Generator Feature -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-pen-fancy fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">AI Copy Generator</h5>
+                        <p class="card-text text-muted">
+                            Generate compelling ad copy and headlines using advanced AI technology.
+                        </p>
+                        <a href="/copy-generator" class="btn btn-warning">
+                            Generate
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thumbnail Analyzer Feature -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-image fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">Thumbnail Analyzer</h5>
+                        <p class="card-text text-muted">
+                            Analyze your ad thumbnails and get optimization recommendations for better performance.
+                        </p>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#thumbnailModal">
+                            Analyze
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Chatbot Feature -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-comments fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">AI Chatbot</h5>
+                        <p class="card-text text-muted">
+                            Get instant answers to your advertising questions with our intelligent AI assistant.
+                        </p>
+                        <a href="/chatbot" class="btn btn-secondary">
+                            Chat Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Health Feature -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fas fa-heartbeat fa-lg"></i>
+                        </div>
+                        <h5 class="card-title">System Health</h5>
+                        <p class="card-text text-muted">
+                            Check the status of our AI models and system components.
+                        </p>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#healthModal">
+                            Check Status
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== STATS SECTION ===== -->
+<section class="bg-white py-5">
+    <div class="container-fluid">
+        <div class="row text-center">
+            <!-- Accuracy Rate Stat -->
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                        <h3 class="text-primary fw-bold">95%</h3>
+                        <p class="text-muted mb-0">Accuracy Rate</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Predictions Made Stat -->
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                        <h3 class="text-success fw-bold">10K+</h3>
+                        <p class="text-muted mb-0">Predictions Made</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Happy Users Stat -->
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                        <h3 class="text-warning fw-bold">500+</h3>
+                        <p class="text-muted mb-0">Happy Users</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI Support Stat -->
+            <div class="col-md-3 mb-4">
+                <div class="card border-0 bg-light">
+                    <div class="card-body">
+                        <h3 class="text-info fw-bold">24/7</h3>
+                        <p class="text-muted mb-0">AI Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CALL TO ACTION SECTION ===== -->
+<section class="bg-primary text-white py-5">
+    <div class="container-fluid text-center">
+        <h2 class="fw-bold mb-3">Ready to Optimize Your Ads?</h2>
+        <p class="lead mb-4">Start using our AI-powered tools today and see the difference.</p>
+        <div class="d-flex gap-3 justify-content-center">
+            <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#predictModal">
+                Get Started
+            </button>
+            <a href="/analytics" class="btn btn-outline-light btn-lg">
+                View Analytics
+            </a>
+            <a href="/chatbot" class="btn btn-outline-light btn-lg">
+                Ask Questions
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MODAL TEMPLATES ===== -->
+{% include 'modals/predict_modal.html' %}
+{% include 'modals/roi_modal.html' %}
+{% include 'modals/copy_modal.html' %}
+{% include 'modals/thumbnail_modal.html' %}
+{% include 'modals/health_modal.html' %}
+
+<!-- ===== JAVASCRIPT FUNCTIONALITY ===== -->
+<script>
+// ===== UTILITY FUNCTIONS =====
+
+/**
+ * Display alert notifications to the user
+ * @param {string} message - The message to display
+ * @param {string} type - The type of alert (info, success, warning, danger)
+ */
+function showAlert(message, type = 'info') {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+    alertDiv.style.position = 'fixed';
+    alertDiv.style.top = '20px';
+    alertDiv.style.right = '20px';
+    alertDiv.style.zIndex = '1060';
+    alertDiv.style.minWidth = '300px';
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    document.body.appendChild(alertDiv);
+    
+    // Auto-remove alert after 5 seconds
+    setTimeout(() => {
+        if (alertDiv.parentNode) {
+            alertDiv.remove();
+        }
+    }, 5000);
+}
+
+/**
+ * Format numbers with commas for better readability
+ * @param {number} num - The number to format
+ * @returns {string} Formatted number string
+ */
+function formatNumber(num) {
+    return new Intl.NumberFormat().format(num);
+}
+
+// ===== API COMMUNICATION =====
+
+/**
+ * Make API calls with fallback to demo mode
+ * @param {string} endpoint - The API endpoint to call
+ * @param {string} method - HTTP method (GET, POST, etc.)
+ * @param {object} data - Data to send with the request
+ * @returns {Promise<object>} API response
+ */
+async function apiCall(endpoint, method = 'GET', data = null) {
+    const config = {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    };
+
+    if (data && method !== 'GET') {
+        config.body = JSON.stringify(data);
+    }
+
+    try {
+        const response = await fetch(endpoint, config);
+        if (response.ok) {
+            return await response.json();
+        }
+    } catch (error) {
+        console.log('Real API call failed, using demo mode:', error.message);
+    }
+
+    // Fallback to demo mode with realistic data
+    return getDemoData(endpoint, data);
+}
+
+/**
+ * Generate demo data for testing when server is not available
+ * @param {string} endpoint - The API endpoint
+ * @param {object} data - Input data
+ * @returns {Promise<object>} Demo response data
+ */
+async function getDemoData(endpoint, data) {
+    try {
+        // Health check demo data
+        if (endpoint === '/api/health') {
+            return {
+                status: "healthy",
+                health_score: 85.0,
+                model_status: {
+                    ctr_model: true,
+                    cpm_model: true,
+                    roi_model: true,
+                    style_model: true,
+                    cta_model: true,
+                    thumbnail_model: true,
+                    image_model: true,
+                    image_pipeline: false,
+                    llm_pipeline: true
+                },
+                timestamp: new Date().toISOString(),
+                version: "2.0.0"
+            };
+        }
+        
+        // Predict metrics demo data
+        if (endpoint === '/api/predict-metrics') {
+            const budget = data.budget || 1000;
+            const platform = data.platform || 'facebook';
+            const ageGroup = data.age_group || '25-34';
+            const adFormat = data.ad_format || 'image';
+            const industry = data.industry || 'ecommerce';
+            
+            // Generate realistic predictions based on input parameters
+            let baseCTR = 2.0; // Base CTR percentage
+            let baseCPM = 8.0; // Base CPM
+            
+            // Adjust based on platform
+            if (platform === 'linkedin') {
+                baseCTR = 1.5;
+                baseCPM = 12.0;
+            } else if (platform === 'instagram') {
+                baseCTR = 2.5;
+                baseCPM = 7.0;
+            } else if (platform === 'youtube') {
+                baseCTR = 1.8;
+                baseCPM = 9.0;
+            }
+            
+            // Adjust based on ad format
+            if (adFormat === 'video') {
+                baseCTR += 0.5;
+            } else if (adFormat === 'carousel') {
+                baseCTR += 0.3;
+            }
+            
+            // Add some randomness
+            const ctr = (baseCTR + (Math.random() - 0.5) * 2).toFixed(2);
+            const cpm = (baseCPM + (Math.random() - 0.5) * 4).toFixed(2);
+            
+            // Calculate impressions and clicks
+            const impressions = Math.floor(budget * 1000 / cpm);
+            const clicks = Math.floor(impressions * ctr / 100);
+            const reach = Math.floor(impressions * 0.8); // Assume 80% reach rate
+            const confidence = (75 + Math.random() * 20).toFixed(1);
+            
+            return {
+                predictions: {
+                    ctr_prediction: parseFloat(ctr),
+                    cpm_prediction: parseFloat(cpm),
+                    estimated_impressions: impressions,
+                    estimated_reach: reach,
+                    estimated_clicks: clicks,
+                    confidence_score: parseFloat(confidence)
+                },
+                input_data: data,
+                timestamp: new Date().toISOString(),
+                model_version: "2.0.0"
+            };
+        }
+        
+        // ROI calculation demo data
+        if (endpoint === '/api/calculate-roi') {
+            // Use backend data structure if available, otherwise calculate from form data
+            let adSpend, revenue, costOfGoods;
+            
+            if (data.ad_spend && data.revenue && data.cost_of_goods) {
+                // Backend data structure
+                adSpend = data.ad_spend;
+                revenue = data.revenue;
+                costOfGoods = data.cost_of_goods;
+            } else {
+                // Form data structure - calculate derived values
+                adSpend = data.adSpend || 1000;
+                const cpc = data.cpc || 2.5;
+                const conversionRate = data.conversionRate || 3.5;
+                const productPrice = data.productPrice || 50;
+                
+                const totalClicks = Math.floor(adSpend / cpc);
+                const conversions = Math.floor(totalClicks * (conversionRate / 100));
+                revenue = conversions * productPrice;
+                costOfGoods = revenue * 0.7; // Assume 30% profit margin
+            }
+            
+            const grossProfit = revenue - costOfGoods;
+            const netProfit = grossProfit - adSpend;
+            const roi = ((netProfit) / adSpend * 100);
+            const totalClicks = Math.floor(adSpend / (data.cpc || 2.5));
+            const conversions = Math.floor(totalClicks * ((data.conversionRate || 3.5) / 100));
+            
+            return {
+                roi_analysis: {
+                    roi_percentage: roi.toFixed(1),
+                    roi_category: roi > 100 ? "excellent" : roi > 50 ? "good" : roi > 0 ? "moderate" : "poor",
+                    confidence_score: "85%",
+                    total_clicks: totalClicks,
+                    conversions: conversions,
+                    revenue: revenue.toFixed(2),
+                    net_profit: netProfit.toFixed(2),
+                    gross_profit: grossProfit.toFixed(2),
+                    assessment: `ROI: ${roi.toFixed(1)}% - ${roi > 100 ? "Excellent" : roi > 50 ? "Good" : roi > 0 ? "Moderate" : "Poor"} Performance`,
+                    recommendation: roi > 100 ? "Scale your budget for maximum returns" : "Optimize targeting and creative for better performance",
+                    insight_summary: `Your campaign shows ${roi > 50 ? "strong" : "moderate"} potential for profitability`
+                },
+                input_data: data,
+                timestamp: new Date().toISOString()
+            };
+        }
+        
+        // Copy generation demo data
+        if (endpoint === '/api/generate-copy') {
+            return {
+                generated_copy: {
+                    primary_headline: `Discover ${data.productName} - Perfect for ${data.targetAudience}`,
+                    primary_body: `Experience the power of ${data.productName} designed specifically for ${data.targetAudience}. ${data.keyBenefits || 'Amazing benefits await you'}.`,
+                    primary_cta: data.callToAction || "Get Started Today",
+                    design_style: "professional",
+                    image_prompt: data.generateImage ? `${data.tone || 'professional'} ad showcasing ${data.productName} for ${data.targetAudience}. Professional background, ad style.` : null,
+                    image_path: null,
+                    variations: [
+                        {
+                            headline: `${data.productName} - Your Solution Awaits`,
+                            body: `Join thousands of satisfied ${data.targetAudience} who trust ${data.productName}.`,
+                            cta: "Learn More"
+                        },
+                        {
+                            headline: `Transform Your Experience with ${data.productName}`,
+                            body: `Ready to elevate your results? ${data.productName} delivers exactly what ${data.targetAudience} need.`,
+                            cta: "Try Now"
+                        },
+                        {
+                            headline: `${data.targetAudience} Love ${data.productName}`,
+                            body: `See why ${data.productName} is the top choice for ${data.targetAudience} everywhere.`,
+                            cta: "Join Today"
+                        }
+                    ]
+                },
+                input_data: data,
+                timestamp: new Date().toISOString(),
+                copy_variations: 3
+            };
+        }
+        
+        // Thumbnail analysis demo data
+        if (endpoint === '/api/analyze-thumbnail') {
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Simulate processing time
+            
+            return {
+                analysis: {
+                    width: 1920,
+                    height: 1080,
+                    aspect_ratio: 1.78,
+                    brightness: 142.5,
+                    contrast: 0.45,
+                    color_balance: 25.3,
+                    performance_score: Math.floor(Math.random() * 30 + 65),
+                    performance: "👍 Good",
+                    performance_factors: [
+                        "✅ Good brightness levels",
+                        "✅ Balanced contrast ratio", 
+                        "✅ Optimal aspect ratio for social media",
+                        "✅ High resolution for clarity",
+                        "✅ Well-balanced color composition"
+                    ],
+                    rgb_means: {
+                        red: 128.5,
+                        green: 135.2,
+                        blue: 142.8
+                    }
+                },
+                timestamp: new Date().toISOString()
+            };
+        }
+        
+        throw new Error('API endpoint not available in demo mode');
+        
+    } catch (error) {
+        console.error('API call failed:', error);
+        throw error;
+    }
+}
+
+// ===== FORM INITIALIZATION =====
+
+/**
+ * Initialize all form handlers when the page loads
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 AdVision - AI-Powered Ad Analytics Loaded');
+    
+    // Initialize all form handlers
+    initializePredictForm();
+    initializeROIForm();
+    initializeCopyForm();
+    initializeHealthCheck();
+    
+    // Animate counters
+    setTimeout(animateCounters, 1000);
+    
+    // Check server status
+    checkServerStatus();
+});
+
+// ===== FORM HANDLERS =====
+
+/**
+ * Initialize the Predict Performance form
+ */
+function initializePredictForm() {
+    const predictForm = document.getElementById('predictForm');
+    if (predictForm) {
+        predictForm.addEventListener('submit', handlePredictSubmit);
+    }
+}
+
+/**
+ * Initialize the ROI Calculator form
+ */
+function initializeROIForm() {
+    const roiForm = document.getElementById('roiForm');
+    if (roiForm) {
+        roiForm.addEventListener('submit', handleROISubmit);
+    }
+}
+
+/**
+ * Initialize the Copy Generator form
+ */
+function initializeCopyForm() {
+    const copyForm = document.getElementById('copyForm');
+    if (copyForm) {
+        copyForm.addEventListener('submit', handleCopySubmit);
+    }
+}
+
+/**
+ * Initialize the Health Check modal
+ */
+function initializeHealthCheck() {
+    const healthModal = document.getElementById('healthModal');
+    if (healthModal) {
+        healthModal.addEventListener('show.bs.modal', handleHealthCheck);
+    }
+}
+
+// ===== FORM SUBMISSION HANDLERS =====
+
+/**
+ * Handle Predict Performance form submission
+ */
+async function handlePredictSubmit(event) {
+    event.preventDefault();
+    
+    try {
+        const form = event.target;
+        const formData = new FormData(form);
+        
+        // Map frontend field names to backend expectations
+        const data = {
+            budget: parseFloat(formData.get('adSpend')) || 1000,
+            age_group: formData.get('targetAge') || '25-34',
+            platform: formData.get('platform') || 'Facebook',
+            ad_format: formData.get('adFormat') || 'Image',
+            industry: formData.get('industry') || 'E-commerce',
+            campaign_duration: parseInt(formData.get('campaignDuration')) || 30
+        };
+        
+        // Validate required fields
+        if (!data.budget || !data.age_group || !data.platform || !data.ad_format || !data.industry) {
+            showAlert('Please fill in all required fields', 'warning');
+            return;
+        }
+        
+        // Show loading state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Analyzing...';
+        submitBtn.disabled = true;
+        
+        console.log('📊 Sending predict data:', data);
+        
+        // Make API call
+        const response = await apiCall('/api/predict-metrics', 'POST', data);
+        
+        // Reset button
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        if (response && response.predictions) {
+            // Display results with proper data structure
+            const predictions = {
+                ctr: response.predictions.ctr_prediction || response.predictions.ctr || 0,
+                cpm: response.predictions.cpm_prediction || response.predictions.cpm || 0,
+                impressions: response.predictions.estimated_impressions || response.predictions.impressions || 0,
+                reach: response.predictions.estimated_reach || response.predictions.reach || 0,
+                clicks: response.predictions.estimated_clicks || response.predictions.clicks || 0,
+                confidence: response.predictions.confidence_score || 85
+            };
+            
+            displayPredictResults(predictions, data);
+            showAlert('Performance prediction completed successfully!', 'success');
+        } else {
+            throw new Error('Invalid response structure');
+        }
+        
+    } catch (error) {
+        console.error('Predict submission error:', error);
+        showAlert('Failed to predict performance. Please try again.', 'danger');
+        
+        // Reset button
+        const submitBtn = event.target.querySelector('button[type="submit"]');
+        submitBtn.innerHTML = '<i class="fas fa-chart-line me-2"></i>Predict Performance';
+        submitBtn.disabled = false;
+    }
+}
+
+/**
+ * Handle ROI Calculator form submission
+ */
+async function handleROISubmit(e) {
+    e.preventDefault();
+    
+    // Get form values with proper validation
+    const adSpend = parseFloat(document.getElementById('adSpendROI').value) || 0;
+    const cpc = parseFloat(document.getElementById('cpc').value) || 0;
+    const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
+    const productPrice = parseFloat(document.getElementById('productPrice').value) || 0;
+    const profitMargin = parseFloat(document.getElementById('profitMargin').value) || 0;
+    const repeatPurchases = parseFloat(document.getElementById('repeatPurchases').value || 0);
+
+    // Validate required fields
+    if (!adSpend || !cpc || !conversionRate || !productPrice || !profitMargin) {
+        showAlert('Please fill in all required fields', 'warning');
+        return;
+    }
+
+    // Calculate derived values for ROI analysis
+    const totalClicks = Math.floor(adSpend / cpc);
+    const conversions = Math.floor(totalClicks * (conversionRate / 100));
+    const revenue = conversions * productPrice;
+    const costOfGoods = revenue * (1 - profitMargin / 100);
+
+    // Map form data to backend API expectations
+    const formData = {
+        ad_spend: adSpend,
+        revenue: revenue,
+        cost_of_goods: costOfGoods,
+        // Keep original values for display
+        adSpend: adSpend,
+        cpc: cpc,
+        conversionRate: conversionRate,
+        productPrice: productPrice,
+        profitMargin: profitMargin,
+        repeatPurchases: repeatPurchases
+    };
+
+    try {
+        showAlert('Calculating ROI...', 'info');
+        const response = await apiCall('/api/calculate-roi', 'POST', formData);
+
+        // Display results - handle both backend and demo responses
+        const roiAnalysis = response.roi_analysis || response;
+        displayROIResults(roiAnalysis, formData);
+        showAlert('ROI calculation completed!', 'success');
+
+    } catch (error) {
+        showAlert(`ROI calculation failed: ${error.message}`, 'danger');
+        console.error('ROI error:', error);
+    }
+}
+
+/**
+ * Handle Copy Generator form submission
+ */
+async function handleCopySubmit(e) {
+    e.preventDefault();
+    
+    // Get form values with proper validation
+    const productName = document.getElementById('productName').value.trim() || '';
+    const targetAudience = document.getElementById('targetAudience').value.trim() || '';
+    const adObjective = document.getElementById('adObjective').value || '';
+    const tone = document.getElementById('tone').value || '';
+    const keyBenefits = document.getElementById('keyBenefits').value.trim() || '';
+    const callToAction = document.getElementById('callToAction').value.trim() || '';
+    const generateImage = document.getElementById('generateImage').checked;
+
+    // Validate required fields
+    if (!productName || !targetAudience || !adObjective || !tone) {
+        showAlert('Please fill in all required fields', 'warning');
+        return;
+    }
+
+    // Map form data to backend API expectations
+    const formData = {
+        productName: productName,
+        targetAudience: targetAudience,
+        adObjective: adObjective,
+        tone: tone,
+        keyBenefits: keyBenefits,
+        callToAction: callToAction,
+        generateImage: generateImage
+    };
+
+    try {
+        showAlert('Generating ad copy...', 'info');
+        const response = await apiCall('/api/generate-copy', 'POST', formData);
+
+        // Display results - handle both backend and demo responses
+        displayCopyResults(response);
+        showAlert('Ad copy generated successfully!', 'success');
+
+    } catch (error) {
+        showAlert(`Copy generation failed: ${error.message}`, 'danger');
+        console.error('Copy generation error:', error);
+    }
+}
+
+/**
+ * Handle Health Check modal display
+ */
+async function handleHealthCheck() {
+    try {
+        showAlert('Checking system health...', 'info');
+        
+        const response = await apiCall('/api/health');
+        displayHealthResults(response);
+        showAlert('Health check completed!', 'success');
+        
+    } catch (error) {
+        document.getElementById('healthResults').innerHTML = `
+            <div class="alert alert-danger">
+                <h6><i class="fas fa-exclamation-triangle"></i> Health Check Failed</h6>
+                <p>${error.message}</p>
+            </div>
+        `;
+        showAlert(`Health check failed: ${error.message}`, 'danger');
+        console.error('Health check error:', error);
+    }
+}
+
+// ===== RESULT DISPLAY FUNCTIONS =====
+
+/**
+ * Display Predict Performance results
+ */
+function displayPredictResults(predictions, formData = {}) {
+    try {
+        // Extract prediction data
+        const ctr = predictions.ctr || 0;
+        const cpm = predictions.cpm || 0;
+        const impressions = predictions.impressions || 0;
+        const reach = predictions.reach || 0;
+        const clicks = predictions.clicks || 0;
+        const confidence = predictions.confidence || 0;
+
+        // Update metric displays
+        document.getElementById('predictedCTR').textContent = (ctr * 100).toFixed(2) + '%';
+        document.getElementById('predictedImpressions').textContent = formatNumber(impressions);
+        document.getElementById('predictedReach').textContent = formatNumber(reach);
+        document.getElementById('predictedCPM').textContent = '$' + cpm.toFixed(2);
+
+        // Update insights with safe fallbacks
+        document.getElementById('predictInsights').innerHTML = `
+            <div class="mb-2"><strong>Estimated Clicks:</strong> ${isNaN(clicks) ? '0' : formatNumber(clicks)}</div>
+            <div class="mb-2"><strong>Confidence Score:</strong> ${isNaN(confidence) ? '0' : confidence.toFixed(1)}%</div>
+            <div class="mb-2"><strong>Platform Performance:</strong> ${getPlatformPerformance(formData.platform || 'Facebook')}</div>
+            <div class="mb-2"><strong>Industry Benchmark:</strong> ${getIndustryBenchmark(formData.industry || 'E-commerce')}</div>
+        `;
+
+        // Generate recommendations
+        generatePredictRecommendations(formData, predictions);
+
+        // Destroy existing charts before creating new ones
+        if (window.performanceChart && typeof window.performanceChart.destroy === 'function') {
+            window.performanceChart.destroy();
+            window.performanceChart = null;
+        }
+        
+        if (window.analyticsDashboardCharts) {
+            window.analyticsDashboardCharts.forEach(chart => {
+                if (chart && typeof chart.destroy === 'function') {
+                    chart.destroy();
+                }
+            });
+            window.analyticsDashboardCharts = [];
+        }
+
+        // Create performance chart with validated data
+        console.log('Creating performance chart with validated data:', { impressions, reach, clicks, ctr });
+        createPerformanceChart(impressions, reach, clicks, ctr);
+        
+        // Create comprehensive analytics dashboard with validated data
+        const chartData = {
+            impressions: impressions,
+            reach: reach,
+            clicks: clicks,
+            ctr: ctr,
+            cpm: cpm
+        };
+        createAnalyticsDashboard(chartData);
+
+        document.getElementById('predictResults').style.display = 'block';
+    } catch (error) {
+        console.error('Error displaying predict results:', error);
+        showAlert('Error displaying results. Please try again.', 'danger');
+    }
+}
+
+/**
+ * Display ROI Calculator results
+ */
+function displayROIResults(roiAnalysis, formData) {
+    // Handle both backend and demo data structures
+    const roi = parseFloat(roiAnalysis.roi_percentage || 0);
+    const totalClicks = roiAnalysis.total_clicks || 0;
+    const conversions = roiAnalysis.conversions || 0;
+    const revenue = parseFloat(roiAnalysis.revenue || 0);
+    const profit = parseFloat(roiAnalysis.net_profit || roiAnalysis.profit || 0);
+    const adSpend = formData.adSpend || 0;
+    const profitMargin = formData.profitMargin || 0;
+    const conversionRate = formData.conversionRate || 0;
+
+    // Update metric values with proper error handling
+    document.getElementById('totalClicks').textContent = isNaN(totalClicks) ? '0' : formatNumber(totalClicks);
+    document.getElementById('totalConversions').textContent = isNaN(conversions) ? '0' : formatNumber(conversions);
+    document.getElementById('totalRevenue').textContent = isNaN(revenue) ? '$0' : '$' + formatNumber(revenue);
+    document.getElementById('finalROI').textContent = isNaN(roi) ? '0%' : roi.toFixed(1) + '%';
+    document.getElementById('profitMargin').textContent = isNaN(profitMargin) ? '0%' : profitMargin + '%';
+    document.getElementById('netProfit').textContent = isNaN(profit) ? '$0' : '$' + formatNumber(profit);
+
+    // Update progress bar
+    document.getElementById('roiProgress').style.width = Math.min((isNaN(roi) ? 0 : roi) / 2, 100) + '%';
+
+    // Enhanced ROI assessment with proper error handling
+    const assessment = roiAnalysis.assessment || 'ROI analysis completed';
+    const recommendation = roiAnalysis.recommendation || 'Review your campaign strategy';
+    const insight = roiAnalysis.insight_summary || 'Monitor performance and optimize based on results';
+
+    document.getElementById('roiAdvice').innerHTML = `
+        <div class="mb-2"><strong>Assessment:</strong> ${assessment}</div>
+        <div class="mb-2"><strong>Recommendation:</strong> ${recommendation}</div>
+        <div class="mb-2"><strong>Insight:</strong> ${insight}</div>
+        <div class="mb-2"><strong>Profit Margin:</strong> ${profitMargin}%</div>
+        <div class="mb-2"><strong>Conversion Rate:</strong> ${conversionRate}%</div>
+    `;
+
+    // Generate ROI recommendations
+    generateROIRecommendations(formData, roiAnalysis);
+
+    // Create ROI chart
+    createROIChart(adSpend, revenue, profit, roi);
+
+    document.getElementById('roiResults').style.display = 'block';
+}
+
+/**
+ * Display Copy Generator results
+ */
+function displayCopyResults(generatedCopyData) {
+    // Check if the response has the expected structure
+    if (!generatedCopyData || !generatedCopyData.generated_copy) {
+        console.error('Invalid copy generation response:', generatedCopyData);
+        showAlert('Copy generation failed: Invalid response structure', 'danger');
+        return;
+    }
+
+    const copy = generatedCopyData.generated_copy;
+    window.generatedCopyData = copy; // Store for clipboard function
+
+    // Check if required elements exist before updating
+    const headlinesElement = document.getElementById('generatedHeadlines');
+    const bodyElement = document.getElementById('generatedBody');
+    const ctaElement = document.getElementById('generatedCTA');
+    const imageElement = document.getElementById('generatedImage');
+    const resultsElement = document.getElementById('copyResults');
+
+    if (!headlinesElement || !bodyElement || !ctaElement || !imageElement || !resultsElement) {
+        console.error('Required DOM elements not found for copy display');
+        showAlert('Copy generation failed: Display elements not found', 'danger');
+        return;
+    }
+
+    // Display results with proper error handling
+    headlinesElement.innerHTML = `
+        <div class="alert alert-light">
+            <strong>Primary:</strong> ${copy.primary_headline || 'No headline generated'}<br>
+            <strong>Variations:</strong><br>
+            ${(copy.variations || []).map((v, i) => `${i+1}. ${v.headline || 'No headline'}`).join('<br>')}
+        </div>
+    `;
+
+    bodyElement.innerHTML = `
+        <div class="alert alert-light">
+            ${copy.primary_body || 'No body copy generated'}
+        </div>
+    `;
+
+    ctaElement.innerHTML = `
+        <div class="alert alert-light">
+            <strong>Primary:</strong> ${copy.primary_cta || 'No CTA generated'}<br>
+            <strong>Style:</strong> ${copy.design_style || 'Professional'}
+        </div>
+    `;
+
+    // Display generated image if available
+    if (copy.image_path) {
+        imageElement.innerHTML = `
+            <div class="alert alert-light">
+                <img src="${copy.image_path}" class="img-fluid rounded" alt="Generated Ad Image" style="max-width: 100%; height: auto;">
+                <div class="mt-2">
+                    <small class="text-muted">
+                        <strong>Image Prompt:</strong> ${copy.image_prompt || 'AI-generated based on your inputs'}
+                    </small>
+                </div>
+            </div>
+        `;
+    } else {
+        imageElement.innerHTML = `
+            <div class="alert alert-warning">
+                <i class="fas fa-info-circle me-2"></i>
+                Image generation is not available. The ad copy has been generated successfully.
+            </div>
+        `;
+    }
+
+    resultsElement.style.display = 'block';
+}
+
+/**
+ * Display Health Check results
+ */
+function displayHealthResults(response) {
+    // Check if response has required properties
+    if (!response || typeof response !== 'object') {
+        document.getElementById('healthResults').innerHTML = `
+            <div class="alert alert-danger">
+                <h6><i class="fas fa-exclamation-triangle"></i> Invalid Response</h6>
+                <p>Received invalid response from server</p>
+            </div>
+        `;
+        return;
+    }
+
+    const modelStatus = response.model_status || {};
+    const healthScore = response.health_score || 0;
+    const status = response.status || 'unknown';
+    const version = response.version || 'unknown';
+    const timestamp = response.timestamp || new Date().toISOString();
+
+    document.getElementById('healthResults').innerHTML = `
+        <div class="alert alert-${status === 'healthy' ? 'success' : 'warning'}">
+            <h6><i class="fas fa-${status === 'healthy' ? 'check-circle' : 'exclamation-triangle'}"></i> System Status: ${status.toUpperCase()}</h6>
+            <p><strong>Health Score:</strong> ${healthScore}%</p>
+            <p><strong>Version:</strong> ${version}</p>
+            <p><strong>Timestamp:</strong> ${new Date(timestamp).toLocaleString()}</p>
+        </div>
+        
+        <h6>Model Status:</h6>
+        <div class="row">
+            ${Object.entries(modelStatus).map(([name, status]) => {
+                // Format model names for better display
+                let displayName = name.replace(/_/g, ' ').toUpperCase();
+                if (name === 'ctr_model') displayName = 'CTR MODEL';
+                if (name === 'cpm_model') displayName = 'CPM MODEL';
+                if (name === 'roi_model') displayName = 'ROI MODEL';
+                if (name === 'style_model') displayName = 'STYLE MODEL';
+                if (name === 'cta_model') displayName = 'CTA MODEL';
+                if (name === 'thumbnail_model') displayName = 'THUMBNAIL MODEL';
+                if (name === 'image_model') displayName = 'IMAGE MODEL';
+                if (name === 'image_pipeline') displayName = 'IMAGE PIPELINE';
+                if (name === 'llm_pipeline') displayName = 'LLM PIPELINE';
+                
+                return `
+                    <div class="col-md-6 mb-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-bold">${displayName}</span>
+                            <span class="badge bg-${status ? 'success' : 'danger'}">
+                                ${status ? 'Available' : 'Unavailable'}
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }).join('')}
+        </div>
+        
+        <h6 class="mt-3">System Information:</h6>
+        <ul class="list-unstyled">
+            <li><strong>Max File Size:</strong> 16MB</li>
+            <li><strong>Allowed Extensions:</strong> PNG, JPG, JPEG, GIF, WEBP</li>
+            <li><strong>API Status:</strong> <span class="badge bg-success">Active</span></li>
+        </ul>
+    `;
+}
+
+// ===== HELPER FUNCTIONS =====
+
+/**
+ * Get platform performance description
+ */
+function getPlatformPerformance(platform) {
+    const performances = {
+        'Facebook': 'High engagement, broad reach',
+        'Instagram': 'Visual content, younger audience',
+        'Google': 'Intent-based, higher conversion',
+        'YouTube': 'Video content, longer engagement',
+        'TikTok': 'Trending content, viral potential'
+    };
+    return performances[platform] || 'Good platform performance';
+}
+
+/**
+ * Get industry benchmark description
+ */
+function getIndustryBenchmark(industry) {
+    const benchmarks = {
+        'E-commerce': '2.5% average CTR',
+        'Technology': '1.8% average CTR',
+        'Healthcare': '1.2% average CTR',
+        'Finance': '1.5% average CTR',
+        'Education': '2.1% average CTR'
+    };
+    return benchmarks[industry] || 'Industry standard performance';
+}
+
+/**
+ * Generate predictions recommendations
+ */
+function generatePredictRecommendations(formData, predictions) {
+    const recommendations = [];
+    
+    // Platform-specific recommendations
+    if (formData.platform === 'Facebook') {
+        recommendations.push('🎯 Use detailed targeting options for better reach');
+        recommendations.push('📱 Optimize for mobile-first experience');
+    } else if (formData.platform === 'Instagram') {
+        recommendations.push('📸 Focus on high-quality visual content');
+        recommendations.push('🏷️ Use relevant hashtags for discovery');
+    } else if (formData.platform === 'Google') {
+        recommendations.push('🔍 Target high-intent keywords');
+        recommendations.push('📝 Create compelling ad copy');
+    }
+    
+    // Budget recommendations
+    if (formData.budget < 500) {
+        recommendations.push('💰 Consider increasing budget for better reach');
+    } else if (formData.budget > 5000) {
+        recommendations.push('📊 Monitor performance closely with larger spend');
+    }
+    
+    // Industry recommendations
+    if (formData.industry === 'E-commerce') {
+        recommendations.push('🛒 Focus on product benefits and social proof');
+        recommendations.push('⚡ Optimize for fast loading times');
+    }
+    
+    // Display recommendations
+    const recommendationsList = document.getElementById('predictRecommendations');
+    if (recommendationsList) {
+        recommendationsList.innerHTML = recommendations.map(rec => `<li class="mb-2">${rec}</li>`).join('');
+    }
+}
+
+/**
+ * Generate ROI recommendations
+ */
+function generateROIRecommendations(formData, roiAnalysis) {
+    const recommendations = [];
+    const roi = parseFloat(roiAnalysis.roi_percentage || 0);
+    
+    if (roi > 200) {
+        recommendations.push('🚀 Excellent ROI! Consider scaling your campaign');
+        recommendations.push('📈 Increase budget allocation for maximum returns');
+    } else if (roi > 100) {
+        recommendations.push('✅ Good ROI! Optimize for even better performance');
+        recommendations.push('🎯 Test different targeting options');
+    } else if (roi > 50) {
+        recommendations.push('📊 Moderate ROI - focus on optimization');
+        recommendations.push('🔍 Review your conversion funnel');
+    } else if (roi > 0) {
+        recommendations.push('⚠️ Low ROI - needs optimization');
+        recommendations.push('💰 Consider reducing cost per click');
+    } else {
+        recommendations.push('❌ Negative ROI - immediate action required');
+        recommendations.push('🛑 Pause campaign and review strategy');
+    }
+    
+    // Display recommendations
+    const recommendationsList = document.getElementById('roiRecommendations');
+    if (recommendationsList) {
+        recommendationsList.innerHTML = recommendations.map(rec => `<li class="mb-2">${rec}</li>`).join('');
+    }
+}
+
+// ===== CHART FUNCTIONS =====
+
+/**
+ * Create performance chart for Predict Performance
+ */
+function createPerformanceChart(impressions, reach, clicks, ctr) {
+    try {
+        const ctx = document.getElementById('performanceChart');
+        if (!ctx) {
+            console.error('Performance chart canvas not found');
+            return;
+        }
+        
+        if (typeof Chart === 'undefined') {
+            console.error('Chart.js not loaded, skipping chart creation');
+            return;
+        }
+        
+        // Destroy existing chart if it exists
+        if (window.performanceChart && typeof window.performanceChart.destroy === 'function') {
+            window.performanceChart.destroy();
+        }
+
+        // Ensure we have valid data
+        const validImpressions = isNaN(impressions) ? 0 : impressions;
+        const validReach = isNaN(reach) ? 0 : reach;
+        const validClicks = isNaN(clicks) ? 0 : clicks;
+        const validCTR = isNaN(ctr) ? 0 : ctr;
+
+        // Set canvas dimensions
+        ctx.style.width = '100%';
+        ctx.style.height = '300px';
+
+        // Create a more comprehensive chart with multiple metrics
+        window.performanceChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Impressions', 'Reach', 'Clicks', 'CTR (%)'],
+                datasets: [{
+                    label: 'Performance Metrics',
+                    data: [validImpressions, validReach, validClicks, validCTR * 100],
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.8)',
+                        'rgba(118, 75, 162, 0.8)',
+                        'rgba(79, 172, 254, 0.8)',
+                        'rgba(255, 159, 64, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(102, 126, 234, 1)',
+                        'rgba(118, 75, 162, 1)',
+                        'rgba(79, 172, 254, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2,
+                    borderRadius: 8,
+                    borderSkipped: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Ad Performance Metrics',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        padding: 20
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: 'white',
+                        bodyColor: 'white',
+                        borderColor: 'rgba(255, 255, 255, 0.2)',
+                        borderWidth: 1,
+                        cornerRadius: 8,
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed;
+                                if (label === 'CTR (%)') {
+                                    return `${label}: ${value.toFixed(2)}%`;
+                                } else {
+                                    return `${label}: ${formatNumber(value)}`;
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            callback: function(value, index, values) {
+                                if (index === values.length - 1) {
+                                    // CTR axis
+                                    return value.toFixed(2) + '%';
+                                } else {
+                                    // Other metrics
+                                    return formatNumber(value);
+                                }
+                            },
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    duration: 1000,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        });
+        
+        console.log('✅ Performance chart created successfully with data:', { impressions, reach, clicks, ctr });
+        return window.performanceChart; // Return the chart instance
+    } catch (error) {
+        console.error('Error creating performance chart:', error);
+        return null;
+    }
+}
+
+/**
+ * Create ROI chart for ROI Calculator
+ */
+function createROIChart(adSpend, revenue, profit, roi) {
+    try {
+        const ctx = document.getElementById('roiChart');
+        if (!ctx) {
+            console.log('ROI chart canvas not found');
+            return;
+        }
+        
+        if (typeof Chart === 'undefined') {
+            console.log('Chart.js not loaded, skipping ROI chart creation');
+            return;
+        }
+        
+        // Destroy existing chart if it exists
+        if (window.roiChart && typeof window.roiChart.destroy === 'function') {
+            window.roiChart.destroy();
+        }
+
+        // Ensure we have valid data
+        const validAdSpend = isNaN(adSpend) ? 0 : adSpend;
+        const validRevenue = isNaN(revenue) ? 0 : revenue;
+        const validProfit = isNaN(profit) ? 0 : profit;
+        const validROI = isNaN(roi) ? 0 : roi;
+
+        // Set canvas dimensions
+        ctx.style.width = '100%';
+        ctx.style.height = '300px';
+
+        window.roiChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Ad Spend', 'Net Profit', 'ROI %'],
+                datasets: [{
+                    data: [validAdSpend, validProfit, validROI],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(54, 162, 235, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 3,
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'ROI Analysis Breakdown',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        },
+                        padding: 20
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            usePointStyle: true,
+                            font: {
+                                size: 12,
+                                weight: 'bold'
+                            },
+                            generateLabels: function(chart) {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map((label, i) => {
+                                        const value = data.datasets[0].data[i];
+                                        const color = data.datasets[0].backgroundColor[i];
+                                        return {
+                                            text: `${label}: ${label === 'ROI %' ? value.toFixed(1) + '%' : '$' + formatNumber(value)}`,
+                                            fillStyle: color,
+                                            strokeStyle: color,
+                                            pointStyle: 'circle',
+                                            hidden: false,
+                                            index: i
+                                        };
+                                    });
+                                }
+                                return [];
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: 'white',
+                        bodyColor: 'white',
+                        borderColor: 'rgba(255, 255, 255, 0.2)',
+                        borderWidth: 1,
+                        cornerRadius: 8,
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed;
+                                if (label === 'ROI %') {
+                                    return `${label}: ${value.toFixed(1)}%`;
+                                } else {
+                                    return `${label}: $${formatNumber(value)}`;
+                                }
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    animateRotate: true,
+                    animateScale: true,
+                    duration: 1000,
+                    easing: 'easeInOutQuart'
+                }
+            }
+        });
+        
+        console.log('✅ ROI chart created successfully');
+        return window.roiChart; // Return the chart instance
+    } catch (error) {
+        console.error('Error creating ROI chart:', error);
+        return null;
+    }
+}
+
+/**
+ * Create comprehensive analytics dashboard with multiple charts
+ */
+function createAnalyticsDashboard(data) {
+    try {
+        const container = document.getElementById('analyticsDashboard');
+        if (!container) {
+            console.error('Analytics dashboard container not found');
+            return;
+        }
+
+        // Initialize charts array if it doesn't exist
+        if (!window.analyticsDashboardCharts) {
+            window.analyticsDashboardCharts = [];
+        }
+
+        // Clear existing content
+        container.innerHTML = '';
+
+        // Create dashboard layout
+        const dashboardHTML = `
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="fas fa-chart-line me-2"></i>Performance Trends
+                            </h6>
+                            <canvas id="trendChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="fas fa-chart-pie me-2"></i>Metric Distribution
+                            </h6>
+                            <canvas id="distributionChart" width="400" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="fas fa-chart-bar me-2"></i>Comparative Analysis
+                            </h6>
+                            <canvas id="comparisonChart" width="800" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        container.innerHTML = dashboardHTML;
+
+        // Clear existing charts array
+        window.analyticsDashboardCharts = [];
+
+        // Create trend chart
+        const trendChart = createTrendChart(data);
+        if (trendChart) window.analyticsDashboardCharts.push(trendChart);
+        
+        // Create distribution chart
+        const distributionChart = createDistributionChart(data);
+        if (distributionChart) window.analyticsDashboardCharts.push(distributionChart);
+        
+        // Create comparison chart
+        const comparisonChart = createComparisonChart(data);
+        if (comparisonChart) window.analyticsDashboardCharts.push(comparisonChart);
+
+        console.log('✅ Analytics dashboard created with', window.analyticsDashboardCharts.length, 'charts');
+
+    } catch (error) {
+        console.error('Error creating analytics dashboard:', error);
+    }
+}
+
+/**
+ * Create trend chart showing performance over time
+ */
+function createTrendChart(data) {
+    try {
+        const ctx = document.getElementById('trendChart');
+        if (!ctx || typeof Chart === 'undefined') return null;
+
+        // Destroy existing chart if it exists
+        if (window.trendChart && typeof window.trendChart.destroy === 'function') {
+            window.trendChart.destroy();
+        }
+
+        const trendData = {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+            datasets: [{
+                label: 'Impressions',
+                data: [data.impressions * 0.7, data.impressions * 0.85, data.impressions * 0.95, data.impressions],
+                borderColor: 'rgba(102, 126, 234, 1)',
+                backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                tension: 0.4,
+                fill: true
+            }, {
+                label: 'Clicks',
+                data: [data.clicks * 0.6, data.clicks * 0.8, data.clicks * 0.9, data.clicks],
+                borderColor: 'rgba(79, 172, 254, 1)',
+                backgroundColor: 'rgba(79, 172, 254, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        };
+
+        window.trendChart = new Chart(ctx, {
+            type: 'line',
+            data: trendData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Performance Trends (4 Weeks)',
+                        font: { size: 14, weight: 'bold' }
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return formatNumber(value);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        return window.trendChart;
+
+    } catch (error) {
+        console.error('Error creating trend chart:', error);
+        return null;
+    }
+}
+
+/**
+ * Create distribution chart showing metric breakdown
+ */
+function createDistributionChart(data) {
+    try {
+        const ctx = document.getElementById('distributionChart');
+        if (!ctx || typeof Chart === 'undefined') return null;
+
+        // Destroy existing chart if it exists
+        if (window.distributionChart && typeof window.distributionChart.destroy === 'function') {
+            window.distributionChart.destroy();
+        }
+
+        const distributionData = {
+            labels: ['Impressions', 'Reach', 'Clicks', 'Conversions'],
+            datasets: [{
+                data: [data.impressions, data.reach, data.clicks, data.clicks * 0.035],
+                backgroundColor: [
+                    'rgba(102, 126, 234, 0.8)',
+                    'rgba(118, 75, 162, 0.8)',
+                    'rgba(79, 172, 254, 0.8)',
+                    'rgba(255, 159, 64, 0.8)'
+                ],
+                borderWidth: 2,
+                borderColor: '#fff'
+            }]
+        };
+
+        window.distributionChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: distributionData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Metric Distribution',
+                        font: { size: 14, weight: 'bold' }
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            usePointStyle: true
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                return `${context.label}: ${formatNumber(context.parsed)} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        return window.distributionChart;
+
+    } catch (error) {
+        console.error('Error creating distribution chart:', error);
+        return null;
+    }
+}
+
+/**
+ * Create comparison chart showing benchmark comparisons
+ */
+function createComparisonChart(data) {
+    try {
+        const ctx = document.getElementById('comparisonChart');
+        if (!ctx || typeof Chart === 'undefined') return null;
+
+        // Destroy existing chart if it exists
+        if (window.comparisonChart && typeof window.comparisonChart.destroy === 'function') {
+            window.comparisonChart.destroy();
+        }
+
+        const comparisonData = {
+            labels: ['Your Campaign', 'Industry Average', 'Top Performers'],
+            datasets: [{
+                label: 'CTR (%)',
+                data: [data.ctr * 100, 2.5, 4.2],
+                backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                borderColor: 'rgba(102, 126, 234, 1)',
+                borderWidth: 2
+            }, {
+                label: 'CPM ($)',
+                data: [data.cpm, 3.5, 2.8],
+                backgroundColor: 'rgba(79, 172, 254, 0.8)',
+                borderColor: 'rgba(79, 172, 254, 1)',
+                borderWidth: 2
+            }]
+        };
+
+        window.comparisonChart = new Chart(ctx, {
+            type: 'bar',
+            data: comparisonData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Performance vs Benchmarks',
+                        font: { size: 16, weight: 'bold' }
+                    },
+                    legend: {
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                if (context.dataset.label === 'CTR (%)') {
+                                    return `${context.dataset.label}: ${context.parsed.y.toFixed(2)}%`;
+                                } else {
+                                    return `${context.dataset.label}: $${context.parsed.y.toFixed(2)}`;
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value.toFixed(2);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        return window.comparisonChart;
+
+    } catch (error) {
+        console.error('Error creating comparison chart:', error);
+        return null;
+    }
+}
+
+// ===== UTILITY FUNCTIONS =====
+
+/**
+ * Copy generated ad copy to clipboard
+ */
+function copyToClipboard() {
+    const generatedCopyData = window.generatedCopyData;
+    if (!generatedCopyData) return;
+
+    const copyText = `
+Headline: ${generatedCopyData.primary_headline}
+
+Body: ${generatedCopyData.primary_body}
+
+CTA: ${generatedCopyData.primary_cta}
+
+Style: ${generatedCopyData.design_style}
+    `.trim();
+
+    navigator.clipboard.writeText(copyText).then(() => {
+        showAlert('Ad copy copied to clipboard!', 'success');
+    }).catch(() => {
+        showAlert('Failed to copy to clipboard', 'danger');
+    });
+}
+
+/**
+ * Generate new copy by re-triggering the form submission
+ */
+function generateNewCopy() {
+    const copyForm = document.getElementById('copyForm');
+    if (copyForm) {
+        copyForm.dispatchEvent(new Event('submit'));
+    }
+}
+
+/**
+ * Animate counter numbers on page load
+ */
+function animateCounters() {
+    const counters = document.querySelectorAll('.fw-bold');
+    counters.forEach(counter => {
+        const target = counter.textContent;
+        if (target.includes('%') || target.includes('+') || target.includes('/')) {
+            const number = target.replace(/[^\d]/g, '');
+            const suffix = target.replace(/\d/g, '');
+            let current = 0;
+            const increment = number / 50;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= number) {
+                    current = number;
+                    clearInterval(timer);
+                }
+                counter.textContent = Math.floor(current) + suffix;
+            }, 50);
+        }
+    });
+}
+
+/**
+ * Check server status and show appropriate message
+ */
+function checkServerStatus() {
+    fetch('/api/health')
+        .then(response => {
+            if (response.ok) {
+                console.log('✅ Server is running - using real API');
+            } else {
+                throw new Error('Server not responding');
+            }
+        })
+        .catch(error => {
+            console.log('⚠️ Server not available - using demo mode');
+            showAlert('Running in demo mode. Start the Flask server for full functionality.', 'info');
+        });
+}
+</script>
+{% endblock %} 

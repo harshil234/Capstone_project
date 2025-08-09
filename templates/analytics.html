@@ -1,0 +1,459 @@
+{% extends "base.html" %}
+
+{% block title %}AdVision Analytics Dashboard{% endblock %}
+
+{% block content %}
+<!-- ===== ANALYTICS DASHBOARD HEADER ===== -->
+<section class="bg-gradient-primary text-white py-5">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="display-4 fw-bold mb-3">
+                    <i class="fas fa-chart-line me-3"></i>Analytics Dashboard
+                </h1>
+                <p class="lead mb-0">Comprehensive insights and performance analytics for your advertising campaigns</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <button class="btn btn-light btn-lg" onclick="refreshAnalytics()">
+                    <i class="fas fa-sync-alt me-2"></i>Refresh Data
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MAIN ANALYTICS CONTENT ===== -->
+<section class="py-5">
+    <div class="container-fluid">
+        <!-- ===== KEY METRICS CARDS ===== -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3 col-6">
+                <div class="card border-0 bg-gradient-primary text-white">
+                    <div class="card-body text-center">
+                        <i class="fas fa-eye mb-3" style="font-size: 2.5rem;"></i>
+                        <h3 class="fw-bold" id="totalImpressions">0</h3>
+                        <p class="mb-0">Total Impressions</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card border-0 bg-gradient-success text-white">
+                    <div class="card-body text-center">
+                        <i class="fas fa-mouse-pointer mb-3" style="font-size: 2.5rem;"></i>
+                        <h3 class="fw-bold" id="totalClicks">0</h3>
+                        <p class="mb-0">Total Clicks</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card border-0 bg-gradient-warning text-white">
+                    <div class="card-body text-center">
+                        <i class="fas fa-percentage mb-3" style="font-size: 2.5rem;"></i>
+                        <h3 class="fw-bold" id="avgCTR">0%</h3>
+                        <p class="mb-0">Average CTR</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-6">
+                <div class="card border-0 bg-gradient-info text-white">
+                    <div class="card-body text-center">
+                        <i class="fas fa-dollar-sign mb-3" style="font-size: 2.5rem;"></i>
+                        <h3 class="fw-bold" id="avgCPM">$0</h3>
+                        <p class="mb-0">Average CPM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PERFORMANCE CHARTS SECTION ===== -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-chart-bar me-2 text-primary"></i>Performance Metrics
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div style="position: relative; height: 350px;">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-chart-pie me-2 text-success"></i>Metric Distribution
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div style="position: relative; height: 350px;">
+                            <canvas id="distributionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TREND ANALYSIS SECTION ===== -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-chart-line me-2 text-warning"></i>Performance Trends (4 Weeks)
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div style="position: relative; height: 400px;">
+                            <canvas id="trendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== COMPARATIVE ANALYSIS SECTION ===== -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-12">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-balance-scale me-2 text-info"></i>Performance vs Industry Benchmarks
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div style="position: relative; height: 450px;">
+                            <canvas id="comparisonChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ROI ANALYSIS SECTION ===== -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-chart-pie me-2 text-danger"></i>ROI Analysis
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div style="position: relative; height: 350px;">
+                            <canvas id="roiChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-chart-area me-2 text-primary"></i>Revenue Analysis
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div style="position: relative; height: 350px;">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== INSIGHTS AND RECOMMENDATIONS ===== -->
+        <div class="row g-4">
+            <div class="col-md-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-lightbulb me-2 text-warning"></i>Key Insights & Recommendations
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="insightsContent">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-tachometer-alt me-2 text-success"></i>Performance Score
+                        </h5>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="performance-score-circle">
+                            <div class="score-number" id="performanceScore">85</div>
+                            <div class="score-label">Overall Score</div>
+                        </div>
+                        <div class="mt-3">
+                            <div class="progress mb-2" style="height: 8px;">
+                                <div class="progress-bar bg-success" id="scoreProgress" style="width: 85%"></div>
+                            </div>
+                            <small class="text-muted">Based on CTR, CPM, and engagement metrics</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// ===== ANALYTICS DASHBOARD FUNCTIONS =====
+
+// Sample data for demonstration
+const sampleData = {
+    impressions: 150000,
+    reach: 120000,
+    clicks: 3750,
+    ctr: 0.025,
+    cpm: 3.50,
+    revenue: 18750,
+    adSpend: 525,
+    profit: 18225,
+    roi: 3471.43
+};
+
+// Initialize analytics dashboard
+document.addEventListener('DOMContentLoaded', function() {
+    initializeAnalytics();
+});
+
+function initializeAnalytics() {
+    // Update key metrics
+    updateKeyMetrics(sampleData);
+    
+    // Create all charts
+    createPerformanceChart(sampleData.impressions, sampleData.reach, sampleData.clicks, sampleData.ctr);
+    createDistributionChart(sampleData);
+    createTrendChart(sampleData);
+    createComparisonChart(sampleData);
+    createROIChart(sampleData.adSpend, sampleData.revenue, sampleData.profit, sampleData.roi);
+    createRevenueChart(sampleData);
+    
+    // Generate insights
+    generateInsights(sampleData);
+}
+
+function updateKeyMetrics(data) {
+    document.getElementById('totalImpressions').textContent = formatNumber(data.impressions);
+    document.getElementById('totalClicks').textContent = formatNumber(data.clicks);
+    document.getElementById('avgCTR').textContent = (data.ctr * 100).toFixed(2) + '%';
+    document.getElementById('avgCPM').textContent = '$' + data.cpm.toFixed(2);
+}
+
+function createRevenueChart(data) {
+    try {
+        const ctx = document.getElementById('revenueChart');
+        if (!ctx || typeof Chart === 'undefined') return;
+
+        const revenueData = {
+            labels: ['Ad Spend', 'Revenue', 'Net Profit'],
+            datasets: [{
+                label: 'Amount ($)',
+                data: [data.adSpend, data.revenue, data.profit],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(75, 192, 192, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 2,
+                borderRadius: 8
+            }]
+        };
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: revenueData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Revenue Breakdown',
+                        font: { size: 14, weight: 'bold' }
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': $' + formatNumber(context.parsed.y);
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + formatNumber(value);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+    } catch (error) {
+        console.error('Error creating revenue chart:', error);
+    }
+}
+
+function generateInsights(data) {
+    const insightsHTML = `
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="text-primary mb-3">📈 Performance Highlights</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">✅ CTR of ${(data.ctr * 100).toFixed(2)}% exceeds industry average</li>
+                    <li class="mb-2">✅ CPM of $${data.cpm.toFixed(2)} is competitive</li>
+                    <li class="mb-2">✅ ROI of ${data.roi.toFixed(1)}% shows excellent returns</li>
+                    <li class="mb-2">✅ ${formatNumber(data.clicks)} clicks generated from ${formatNumber(data.impressions)} impressions</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h6 class="text-success mb-3">🚀 Optimization Opportunities</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2">🎯 Increase budget allocation for top-performing segments</li>
+                    <li class="mb-2">🎯 Test new creative variations to improve CTR</li>
+                    <li class="mb-2">🎯 Optimize targeting to reduce CPM</li>
+                    <li class="mb-2">🎯 Scale successful campaigns for maximum ROI</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <h6 class="text-warning mb-3">💡 Strategic Recommendations</h6>
+                <div class="alert alert-info">
+                    <strong>Next Steps:</strong> Based on your current performance, we recommend increasing your ad spend by 25% 
+                    and testing new audience segments. Your ROI of ${data.roi.toFixed(1)}% indicates strong potential for scaling.
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('insightsContent').innerHTML = insightsHTML;
+}
+
+function refreshAnalytics() {
+    // Simulate data refresh
+    const button = event.target;
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Refreshing...';
+    button.disabled = true;
+    
+    setTimeout(() => {
+        // Update with slightly different data
+        const newData = {
+            ...sampleData,
+            impressions: sampleData.impressions + Math.floor(Math.random() * 10000),
+            clicks: sampleData.clicks + Math.floor(Math.random() * 100),
+            ctr: sampleData.ctr + (Math.random() - 0.5) * 0.01
+        };
+        
+        updateKeyMetrics(newData);
+        createPerformanceChart(newData.impressions, newData.reach, newData.clicks, newData.ctr);
+        createDistributionChart(newData);
+        createTrendChart(newData);
+        createComparisonChart(newData);
+        createROIChart(newData.adSpend, newData.revenue, newData.profit, newData.roi);
+        createRevenueChart(newData);
+        generateInsights(newData);
+        
+        button.innerHTML = originalText;
+        button.disabled = false;
+        
+        showAlert('Analytics data refreshed successfully!', 'success');
+    }, 2000);
+}
+
+// Utility function for number formatting
+function formatNumber(num) {
+    return new Intl.NumberFormat().format(num);
+}
+
+// Alert function
+function showAlert(message, type = 'info') {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+    alertDiv.style.position = 'fixed';
+    alertDiv.style.top = '20px';
+    alertDiv.style.right = '20px';
+    alertDiv.style.zIndex = '1060';
+    alertDiv.style.minWidth = '300px';
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    document.body.appendChild(alertDiv);
+    
+    setTimeout(() => {
+        if (alertDiv.parentNode) {
+            alertDiv.remove();
+        }
+    }, 5000);
+}
+</script>
+
+<style>
+.performance-score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    color: white;
+}
+
+.score-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.score-label {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.progress {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.progress-bar {
+    border-radius: 10px;
+}
+</style>
+{% endblock %}
